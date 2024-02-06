@@ -1,0 +1,108 @@
+<h1 class="text-center">Crear Inmueble</h1>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <img class="card-img-top" [src]="imgURL">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label>Nombre:</label>
+              <input class="form-control" type="text" name="nombre" [(ngModel)]="nombre">
+            </div>
+            <div class="form-group">
+              <label>Descripción:</label>
+              <textarea class="form-control" name="descripcion" [(ngModel)]="descripcion"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Precio:</label>
+              <input class="form-control" type="number" name="precio" [(ngModel)]="precio">
+            </div>
+            <div class="form-group">
+              <label>Ubicación:</label>
+              <input class="form-control" type="text" name="ubicacion" [(ngModel)]="ubicacion">
+            </div>
+            <div class="form-group">
+              <label>Metraje:</label>
+              <input class="form-control" type="number" name="metraje" [(ngModel)]="metraje">
+            </div>
+            <div class="form-group">
+              <label>Tipo de venta:</label>
+              <select class="form-control" name="tipo_venta" [(ngModel)]="tipo_venta">
+                <option value="venta">Venta</option>
+                <option value="alquiler">Alquiler</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tipo de inmueble:</label>
+              <select class="form-control" name="tipo_inmueble" [(ngModel)]="tipo_inmueble">
+                <option value="casa">Casa</option>
+                <option value="departamento">Departamento</option>
+                <!-- Agrega más opciones si es necesario -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Elija el inmueble a subir</label>
+              <input class="form-control" type="file" name="image" accept ="image/*" (change)="selectImage($event)"><br>
+              <button class="btn btn-outline-primary" type="submit">Cargar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h2 class="text-center">Lista de Inmuebles</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let image of this.imagenes">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h5 class="card-title">Información del Inmueble</h5>
+        </div>
+        <div class="card-body">
+          <div class="info-group">
+            <label>Nombre:</label>
+            <p>{{image.nombre}}</p>
+          </div>
+          <div class="info-group">
+            <label>Descripción:</label>
+            <p>{{image.descripcion}}</p>
+          </div>
+          <div class="info-group">
+            <label>Precio:</label>
+            <p>{{image.precio}}</p>
+          </div>
+          <div class="info-group">
+            <label>Ubicación:</label>
+            <p>{{image.ubicacion}}</p>
+          </div>
+          <div class="info-group">
+            <label>Metraje:</label>
+            <p>{{image.metraje}}</p>
+          </div>
+          <div class="info-group">
+            <label>Tipo de Venta:</label>
+            <p>{{image.tipo_venta}}</p>
+          </div>
+          <div class="info-group">
+            <label>Tipo de Inmueble:</label>
+            <p>{{image.tipo_inmueble}}</p>
+          </div>
+          <img class="img-fluid" src="http://localhost:3000/{{image.imagen}}" alt="Imagen del Inmueble">
+        </div>
+        <div class="card-footer">
+          <button (click)="deleteImg(image.id)" class="btn btn-outline-danger btn-block" id=*image.id*>Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
